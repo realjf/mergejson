@@ -4,7 +4,7 @@
 // # Created Date: 2023/10/09 09:42:14                                         #
 // # Author: realjf                                                            #
 // # -----                                                                     #
-// # Last Modified: 2023/10/09 10:56:36                                        #
+// # Last Modified: 2023/11/07 18:14:28                                        #
 // # Modified By: realjf                                                       #
 // # -----                                                                     #
 // # Copyright (c) 2023 realjf                                                 #
@@ -63,10 +63,10 @@ func MergeJson(src, dst []byte) (res []byte, err error) {
 func mergeJson(val interface{}, val2 interface{}) (valDst interface{}, err error) {
 	valRef := reflect.ValueOf(val)
 	valRef2 := reflect.ValueOf(val2)
-	if !valRef2.IsValid() {
+	if val2 == nil || valRef2.IsZero() || !valRef2.IsValid() {
 		return val, nil
 	}
-	if !valRef.IsValid() {
+	if val == nil || valRef.IsZero() || !valRef.IsValid() {
 		return val2, nil
 	}
 	switch valRef2.Kind() {
